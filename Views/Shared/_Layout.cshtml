@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/site.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">David Winn</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+
+                    @{
+                        var userId = Context.Session.GetInt32("UserId");
+                        var username = Context.Session.GetString("Username");
+                    }
+                    <div class="nav-links-right">
+                        @if (userId.HasValue)
+                        {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-trigger">@username</a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-controller="Account" asp-action="Profile">Profile</a></li>
+                                <li>
+                                    <form asp-controller="Account" asp-action="Logout" method="post">
+                                        <button type="submit" class="btn-link">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        }
+                        else
+                        {
+                        <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                        }
+            </div>
+            </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 David Winn. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿@model ProfileViewModel
+
+<div class="container">
+    <h2>Profile</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="UpdateProfile" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group">
+                    <label asp-for="Username"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <h4 class="mt-4">Change Password</h4>
+                <div class="form-group">
+                    <label asp-for="CurrentPassword"></label>
+                    <input asp-for="CurrentPassword" class="form-control" />
+                    <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="NewPassword"></label>
+                    <input asp-for="NewPassword" class="form-control" />
+                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ConfirmNewPassword"></label>
+                    <input asp-for="ConfirmNewPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+            </form>
+
+            <div class="mt-5">
+                <h4>Delete Account</h4>
+                <p class="text-danger">Warning: This action cannot be undone.</p>
+                <form asp-action="DeleteAccount" method="post"
+                      onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
+                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
