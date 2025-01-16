@@ -1,8 +1,10 @@
-﻿<section id="hero" class="hero">
+﻿<section id="animation-container" class="fullscreen-section">
+</section>
+
+<section id="hero" class="hero">
     <div class="container">
         <h1>Welcome to My Portfolio</h1>
         <p>Showcasing my journey, skills, and projects in technology and beyond.</p>
-        <a href="/Home">View My Work</a>
     </div>
 </section>
 
@@ -18,13 +20,15 @@
         <h2>Skills</h2>
         <ul class="skills-list">
             <li>C# and ASP.NET MVC</li>
+            <li>Python and Machine Learning</li>
             <li>JavaScript and Web Development</li>
-            <li>Database Management (SQL, MongoDB)</li>
-            <li>iOS Development with Swift</li>
+            <li>Database Management</li>
+            <li>iOS Development with Swift (MVVM)</li>
             <li>Agile and Scrum Methodologies</li>
+            <li>Data Analyst</li>
+            <li>Project Management</li>
         </ul>
     
-
         <div class="marquee">
             <ul class="marquee-content">
                 <li>
@@ -63,25 +67,28 @@
     <div class="container">
         <h2>Projects</h2>
         <div class="project">
-            <a href="/Home/1">LearnLanguage App</a>
-            <p>An iOS language learning app featuring lessons, flashcards, quizzes, and progress tracking, built using the MVVM framework.</p>
+            <h3>
+                <a href="https://github.com/davidwinnbigvideo/LearnLanguageApp">LearnLanguage App</a>
+            </h3>
+            <p>An iOS Swift language learning app featuring lessons, flashcards, quizzes, and progress tracking, built using the MVVM framework.</p>
         </div>
         <div class="project">
-            <h3><a href="/Home/2">AI Ancestry Visualization</a></h3>
-            <p>Placeholder.</p>
+            <h3><a href="https://ancestorgenerator.fhtl.org/">AI Ancestry Visualization</a></h3>
+            <p>Experimental ancestor image generation with NodeJS, AI tools, and API.</p>
         </div>
         <div class="project">
-            <h3><a href="/Home/3">Dungeons & Dragons Tools</a></h3>
-            <p>placeholder.</p>
+            <h3><a href="https://github.com/davidwinnbigvideo/Concentration-Game">Concentration Game App</a></h3>
+            <p>An iOS Swift language concentration game featuring animations.</p>
         </div>
+        <h3>Check out more projects on <a href="https://github.com/davidwinnbigvideo">Github</a>!</h3>
     </div>
 </section>
 
 <section id="contact" class="contact">
     <div class="container">
-        <h2>Contact Me</h2>
+        <h1>Contact Me</h1>
         <p>I'm always excited to collaborate on new projects or discuss opportunities. Feel free to reach out!</p>
-        <form action="/Home/Contact" method="post">
+        <form asp-controller="Home" asp-action="Contact" method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -96,4 +103,3 @@
     </div>
 </section>
 
-<script src="~/js/index.js"></script>

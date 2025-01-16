@@ -178,6 +178,28 @@ namespace Portfolio.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> CreateAdmin()
+        {
+            // Check if admin already exists
+            if (await _context.Users.AnyAsync(u => u.IsAdmin))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var adminUser = new User
+            {
+                Username = "admin",
+                PasswordHash = HashPassword("admin"),
+                IsAdmin = true
+            };
+
+            _context.Users.Add(adminUser);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Login");
+        }
+
         private string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);

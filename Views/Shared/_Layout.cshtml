@@ -5,54 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="~/css/animation.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <a href="/" class="logo">David Winn</a>
-                <ul class="nav-links">
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+    <div class="main-content">
+        <header>
+            <nav class="navbar">
+                <div class="container">
+                    <a href="/" class="logo">David Winn</a>
+                    <button class="mobile-nav-toggle" aria-controls="nav-links" aria-expanded="false">
+                        <span class="sr-only"></span>
+                        <div class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                    <ul class="nav-links">
+                        <li><a asp-controller="Home" asp-action="Index" asp-fragment="about">About Me</a></li>
+                        <li><a asp-controller="Home" asp-action="Index" asp-fragment="skills">Skills</a></li>
+                        <li><a asp-controller="Home" asp-action="Index" asp-fragment="projects">Projects</a></li>
+                        <li><a asp-controller="Home" asp-action="Index" asp-fragment="contact">Contact</a></li>
 
-                    @{
-                        var userId = Context.Session.GetInt32("UserId");
-                        var username = Context.Session.GetString("Username");
-                    }
-                    <div class="nav-links-right">
-                        @if (userId.HasValue)
+                        @if (Context.Session.GetInt32("UserId") != null)
                         {
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-trigger">@username</a>
-                            <ul class="dropdown-menu">
-                                <li><a asp-controller="Account" asp-action="Profile">Profile</a></li>
-                                <li>
-                                    <form asp-controller="Account" asp-action="Logout" method="post">
-                                        <button type="submit" class="btn-link">Logout</button>
-                                    </form>
+                            var userIds = Context.Session.GetInt32("UserId");
+                            var user = await Context.RequestServices.GetRequiredService<ApplicationDbContext>()
+                            .Users.FindAsync(userIds.Value);
+
+                            @if (user?.IsAdmin == true)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Messages" asp-action="Index">Messages</a>
                                 </li>
-                            </ul>
-                        </li>
+                            }
+
+                            var username = Context.Session.GetString("Username");
+                            <div class="nav-links-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-trigger">@username</a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-controller="Account" asp-action="Profile">Profile</a></li>
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <button type="submit" class="btn-link">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                    </div>
                         }
                         else
                         {
+                    <div class="nav-links-right">
                         <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                    </div>
                         }
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main>
+                @RenderBody()
+        </main>
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 David Winn. All rights reserved.</p>
             </div>
-            </ul>
-            </div>
-        </nav>
-    </header>
-    <main>
-        @RenderBody()
-    </main>
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 David Winn. All rights reserved.</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
+    <script src="~/js/animation.js"></script>
+    <script src="~/js/index.js"></script>
+    <script src="~/js/nav.js"></script>
 </body>
 </html>
