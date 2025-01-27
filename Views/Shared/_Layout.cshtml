@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
+    <link rel="icon" type="image/jpeg" href="~/images/DavidWinn400x400.jpg">
     <link rel="stylesheet" href="/css/site.css">
     <link rel="stylesheet" href="~/css/animation.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -27,6 +28,9 @@
                         <li><a asp-controller="Home" asp-action="Index" asp-fragment="skills">Skills</a></li>
                         <li><a asp-controller="Home" asp-action="Index" asp-fragment="projects">Projects</a></li>
                         <li><a asp-controller="Home" asp-action="Index" asp-fragment="contact">Contact</a></li>
+                        <li><a href="https://github.com/davidwinnbigvideo" target="_blank">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/david-winn-information-systems/" target="_blank">LinkedIn</a></li>
+                        <li><a href="/files/DavidWinnResume.pdf" target="_blank">Resume</a></li>
 
                         @if (Context.Session.GetInt32("UserId") != null)
                         {
@@ -70,11 +74,18 @@
         <main>
                 @RenderBody()
         </main>
-        <footer>
-            <div class="container">
+    <footer>
+        <div class="container">
+            <div class="footer-content">
                 <p>&copy; 2025 David Winn. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://github.com/davidwinnbigvideo" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/david-winn-information-systems/" target="_blank">LinkedIn</a>
+                    <a href="/files/DavidWinnResume.pdf" target="_blank">Resume</a>
+                </div>
             </div>
-        </footer>
+        </div>
+    </footer>
     </div>
 
     <script src="~/js/animation.js"></script>

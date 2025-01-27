@@ -48,6 +48,42 @@ footer {
     padding: 1rem 0;
 }
 
+/* Footer enhancements */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+    .social-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
 /* Navbar */
 .navbar {
     background: rgba(44, 62, 80, 0.95);
@@ -254,6 +290,7 @@ section h2 {
 .about {
     background: var(--dark-bg);
     padding: 4rem 0;
+    text-align: center;
 }
 
     .about p {
@@ -433,6 +470,11 @@ section h2 {
     color: var(--text-color);
     padding: 4rem 0;
 }
+
+    .contact h1,
+    .contact > .container > p {
+        text-align: center;
+    }
 
     .contact form {
         background: rgba(255, 255, 255, 0.1);
